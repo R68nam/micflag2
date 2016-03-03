@@ -105,32 +105,60 @@ class RecordViewController: UIViewController, AVAudioPlayerDelegate, AVAudioReco
         }
     }
     
+//    @IBAction func recActn(sender: UIBarButtonItem) {
+//        print("record started")
+//                if sender.title == "Record" {
+//                    soundRecorder.record()
+//                    recBtn.title = "Stop"
+//                } else {
+//                    soundRecorder.stop()
+//                    recBtn.title = "Record"
+//                    plyBtn.enabled = true
+//                    setupRecorder()
+//                }
+//
+//    }
+//    
+//    @IBAction func plyActn(sender: UIBarButtonItem) {
+//        if sender.title == "Play" {
+//                        recBtn.enabled = false
+//                        sender.title = "Stop"
+//                        preparePlayer()
+//                        soundPlayer.play()
+//                    } else {
+//                        soundPlayer.stop()
+//                        sender.title = "Play"
+//                        recBtn.enabled = true
+//                    }
+//    }
+    
     @IBAction func recActn(sender: UIBarButtonItem) {
         print("record started")
-                if sender.title == "Record" {
-                    soundRecorder.record()
-                    recBtn.title = "Stop"
-                } else {
-                    soundRecorder.stop()
-                    recBtn.title = "Record"
-                    plyBtn.enabled = true
-                    setupRecorder()
-                }
+                        if sender.title == "Record" {
+                            soundRecorder.record()
+                            recBtn.title = "Stop"
+                        } else {
+                            soundRecorder.stop()
+                            recBtn.title = "Record"
+                            plyBtn.enabled = true
+//                            setupRecorder()
+                        }
 
     }
     
     @IBAction func plyActn(sender: UIBarButtonItem) {
         if sender.title == "Play" {
-                        recBtn.enabled = false
-                        sender.title = "Stop"
-                        preparePlayer()
-                        soundPlayer.play()
-                    } else {
-                        soundPlayer.stop()
-                        sender.title = "Play"
-                        recBtn.enabled = true
-                    }
+                                    recBtn.enabled = false
+                                    sender.title = "Stop"
+                                    preparePlayer()
+                                    soundPlayer.play()
+                                } else {
+                                    soundPlayer.stop()
+                                    sender.title = "Play"
+                                    recBtn.enabled = true
+                                }
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

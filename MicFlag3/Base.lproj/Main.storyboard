@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -90,13 +90,13 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="7DZ-af-qz9"/>
                                     <barButtonItem title="Record" id="56J-l8-EJO">
                                         <connections>
-                                            <action selector="recActn:" destination="dbB-Wl-pvP" id="1HG-ra-O5H"/>
+                                            <action selector="recActn:" destination="dbB-Wl-pvP" id="AYV-A7-2kd"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="CTZ-DW-0G0"/>
                                     <barButtonItem title="Play" id="Ofk-ib-JIW">
                                         <connections>
-                                            <action selector="plyActn:" destination="dbB-Wl-pvP" id="MEr-ks-zWs"/>
+                                            <action selector="plyActn:" destination="dbB-Wl-pvP" id="VdV-d2-Jlp"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
