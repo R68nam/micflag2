@@ -8,11 +8,39 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+    var slctdImg:UIImage!
 
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+    @IBOutlet weak var imgPckBtn: UIButton!
+    @IBOutlet weak var imgVw: UIImageView!
+    @IBOutlet weak var toRecViewBtn: UIButton!
+    
+    var imagePicker = UIImagePickerController()
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        imagePicker.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            imgVw.contentMode = .ScaleAspectFit
+            imgVw.image = pickedImage
+            slctdImg = pickedImage
+        }
+        dismissViewControllerAnimated(true, completion: nil)
+        toRecViewBtn.enabled = true
+    }
+    
+    @IBAction func imgPckBtnClck(sender: UIButton) {
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .PhotoLibrary
+        presentViewController(imagePicker, animated: true, completion: nil)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        imagePicker.delegate = self
+        toRecViewBtn.enabled = false
     }
 
     override func didReceiveMemoryWarning() {

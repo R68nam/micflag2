@@ -1,25 +1,128 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MicFlag3" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hJy-Iq-XgZ">
+                                <rect key="frame" x="124" y="319" width="126" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="126" id="C1K-nT-gyQ"/>
+                                </constraints>
+                                <state key="normal" title="Pick An Image"/>
+                                <connections>
+                                    <action selector="imgPckBtnClck:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NAk-Y6-pvU"/>
+                                </connections>
+                            </button>
+                            <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y5U-vT-5Tk">
+                                <rect key="frame" x="0.0" y="28" width="375" height="275"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="275" id="iMO-HQ-u3v"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fMY-qx-jXo">
+                                <rect key="frame" x="76" y="405" width="222" height="160"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="63"/>
+                                <state key="normal" title="GO"/>
+                                <connections>
+                                    <segue destination="dbB-Wl-pvP" kind="show" id="5g2-2Y-gHm"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Y5U-vT-5Tk" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="1mr-Hw-RyA"/>
+                            <constraint firstItem="hJy-Iq-XgZ" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="1pW-EP-sDz"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="fMY-qx-jXo" secondAttribute="bottom" constant="102" id="862-YV-Rgy"/>
+                            <constraint firstItem="hJy-Iq-XgZ" firstAttribute="centerX" secondItem="Y5U-vT-5Tk" secondAttribute="centerX" id="Cu2-0K-ihL"/>
+                            <constraint firstItem="fMY-qx-jXo" firstAttribute="centerX" secondItem="hJy-Iq-XgZ" secondAttribute="centerX" id="J1t-He-1aY"/>
+                            <constraint firstItem="fMY-qx-jXo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="60" id="bGZ-lZ-PJk"/>
+                            <constraint firstItem="Y5U-vT-5Tk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="bQb-rU-j06"/>
+                            <constraint firstItem="fMY-qx-jXo" firstAttribute="top" secondItem="hJy-Iq-XgZ" secondAttribute="bottom" constant="56" id="gxv-xj-hjH"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Y5U-vT-5Tk" secondAttribute="trailing" constant="-20" id="ize-t7-ojx"/>
+                        </constraints>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="imgPckBtn" destination="hJy-Iq-XgZ" id="NHQ-xb-55e"/>
+                        <outlet property="imgVw" destination="Y5U-vT-5Tk" id="Shp-4G-vYq"/>
+                        <outlet property="toRecViewBtn" destination="fMY-qx-jXo" id="dww-tK-D4S"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="57.5" y="407.5"/>
+        </scene>
+        <!--Record View Controller-->
+        <scene sceneID="lZj-2N-a24">
+            <objects>
+                <viewController id="dbB-Wl-pvP" customClass="RecordViewController" customModule="MicFlag3" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SLv-DO-Rm7"/>
+                        <viewControllerLayoutGuide type="bottom" id="O1R-xw-5c3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Quf-Py-pjV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gM3-Ih-X8C">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem title="Image" id="arM-ud-Bjm">
+                                        <connections>
+                                            <segue destination="BYZ-38-t0r" kind="show" id="4qb-2e-YhK"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="7DZ-af-qz9"/>
+                                    <barButtonItem title="Record" id="56J-l8-EJO">
+                                        <connections>
+                                            <action selector="recActn:" destination="dbB-Wl-pvP" id="1HG-ra-O5H"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="CTZ-DW-0G0"/>
+                                    <barButtonItem title="Play" id="Ofk-ib-JIW">
+                                        <connections>
+                                            <action selector="plyActn:" destination="dbB-Wl-pvP" id="MEr-ks-zWs"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4VY-HD-C9Y">
+                                <rect key="frame" x="0.0" y="28" width="375" height="452"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gM3-Ih-X8C" firstAttribute="leading" secondItem="Quf-Py-pjV" secondAttribute="leading" id="BjQ-aC-eTp"/>
+                            <constraint firstAttribute="trailing" secondItem="gM3-Ih-X8C" secondAttribute="trailing" id="Q41-l4-z3r"/>
+                            <constraint firstItem="gM3-Ih-X8C" firstAttribute="bottom" secondItem="O1R-xw-5c3" secondAttribute="top" id="nB8-u0-dEd"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="plyBtn" destination="Ofk-ib-JIW" id="dN7-oa-tzv"/>
+                        <outlet property="recBtn" destination="56J-l8-EJO" id="nsB-b4-NOV"/>
+                        <outlet property="recImgView" destination="4VY-HD-C9Y" id="qtN-Q1-K7N"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="64F-kf-LeZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="521.5" y="407.5"/>
         </scene>
     </scenes>
 </document>
