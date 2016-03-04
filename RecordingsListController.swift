@@ -34,14 +34,30 @@ class RecordingsListController: UIViewController, UITableViewDelegate, AVAudioPl
         return cell
     }
     
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         
-        if editingStyle == UITableViewCellEditingStyle.Delete {
-            recordings.removeAtIndex(indexPath.row)
-            userDefaults.setObject(recordings, forKey: "micFlagRecordings")
-            recordingsListTable.reloadData()
+        let delete = UITableViewRowAction(style: .Normal, title: "Delete") { action, index in
+            self.recordings.removeAtIndex(indexPath.row)
+            self.userDefaults.setObject(self.recordings, forKey: "micFlagRecordings")
+            self.recordingsListTable.reloadData()
         }
+        delete.backgroundColor = UIColor.redColor()
         
+        let share = UITableViewRowAction(style: .Normal, title: "Share") { action, index in
+            let fileToShare = self.recordings[indexPath.row]
+            let pathToFileToShare = self.getCacheDirectory().URLByAppendingPathComponent(fileToShare)
+//            let fileData = NSData(contentsOfURL: pathToFileToShare)
+//            let sendData = fileData
+            let activityView = UIActivityViewController(activityItems: [pathToFileToShare], applicationActivities: nil)
+            self.presentViewController(activityView, animated: true, completion: nil)
+        }
+        share.backgroundColor = UIColor.blueColor()
+                
+        return [share, delete]
+    }
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
     }
     
     func getCacheDirectory() -> NSURL {
