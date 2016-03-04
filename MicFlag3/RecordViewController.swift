@@ -21,9 +21,12 @@ class RecordViewController: UIViewController, AVAudioPlayerDelegate, AVAudioReco
     var newFileName = ""
     let userDefaults = NSUserDefaults.standardUserDefaults()
     
-    func getCacheDirectory() -> String {
-        let paths = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentationDirectory, NSSearchPathDomainMask.UserDomainMask, true)
-        return paths[0]
+    func getCacheDirectory() -> NSURL {
+//        let paths = NSSearchPathForDirectoriesInDomains(.DocumentationDirectory, .UserDomainMask, true)
+//        print(paths[0])
+//        return paths[0]
+        let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
+        return documentsURL
     }
     
     func saveFileReference() {
@@ -47,26 +50,37 @@ class RecordViewController: UIViewController, AVAudioPlayerDelegate, AVAudioReco
         newFileName = ""
         newFileName = fileName + "_\(components.month)_\(components.day)_\(components.year)_\(components.hour)_\(components.minute)_\(components.second).m4a"
         
-        let path = getCacheDirectory().stringByAppendingString(newFileName)
+        let path = getCacheDirectory().URLByAppendingPathComponent(newFileName)
         
         print(path)
-        
-        let filePath = NSURL(fileURLWithPath: path)
-        saveFileReference()
-        return filePath
+//        let filePath = NSURL(fileURLWithPath: path)
+//        let filePath = NSURL(fileReferenceLiteral: path)
+//        saveFileReference()
+        return path
     }
     
     func getFileURL() -> NSURL {
-        let pathToRecording = getCacheDirectory().stringByAppendingString(newFileName)
-        let filePathToRecording = NSURL(fileURLWithPath: pathToRecording)
-        return filePathToRecording
+        let pathToRecording = getCacheDirectory().URLByAppendingPathComponent(newFileName)
+//        let filePathToRecording = NSURL(fileURLWithPath: pathToRecording)
+        return pathToRecording
     }
     
     func setupRecorder() {
-        let recordSettings = [AVSampleRateKey : NSNumber(float: Float(44100.0)),
-            AVFormatIDKey : NSNumber(int: Int32(kAudioFormatMPEG4AAC)),
+        let audioSession:AVAudioSession = AVAudioSession.sharedInstance()
+        do {
+            try audioSession.setCategory(AVAudioSessionCategoryRecord)
+            try audioSession.setActive(true)
+        } catch {
+            print(error)
+        }
+        
+        let recordSettings = [
+            AVSampleRateKey : NSNumber(float: Float(44100.0)),
+            AVFormatIDKey : NSNumber(int: Int32(kAudioFormatAppleLossless)),
             AVNumberOfChannelsKey : NSNumber(int: 1),
-            AVEncoderAudioQualityKey : NSNumber(int: Int32(AVAudioQuality.Max.rawValue))]
+            AVEncoderAudioQualityKey : NSNumber(int: Int32(AVAudioQuality.Medium.rawValue)),
+            AVEncoderBitRateKey : NSNumber(int: Int32(320000))
+        ]
         
         var error : NSError?
         
@@ -99,44 +113,27 @@ class RecordViewController: UIViewController, AVAudioPlayerDelegate, AVAudioReco
         if let err = error {
             print("AVAudioPlayer error: \(err.localizedDescription)")
         } else {
-            soundPlayer.delegate = self
-            soundPlayer.prepareToPlay()
-            soundPlayer.volume = 1.0
+            do {
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+                try AVAudioSession.sharedInstance().setActive(true)
+                soundPlayer.delegate = self
+                soundPlayer.prepareToPlay()
+                soundPlayer.volume = 1.0
+            } catch {
+                print(error)
+            }
         }
     }
-    
-//    @IBAction func recActn(sender: UIBarButtonItem) {
-//        print("record started")
-//                if sender.title == "Record" {
-//                    soundRecorder.record()
-//                    recBtn.title = "Stop"
-//                } else {
-//                    soundRecorder.stop()
-//                    recBtn.title = "Record"
-//                    plyBtn.enabled = true
-//                    setupRecorder()
-//                }
-//
-//    }
-//    
-//    @IBAction func plyActn(sender: UIBarButtonItem) {
-//        if sender.title == "Play" {
-//                        recBtn.enabled = false
-//                        sender.title = "Stop"
-//                        preparePlayer()
-//                        soundPlayer.play()
-//                    } else {
-//                        soundPlayer.stop()
-//                        sender.title = "Play"
-//                        recBtn.enabled = true
-//                    }
-//    }
     
     @IBAction func recActn(sender: UIBarButtonItem) {
         print("record started")
                         if sender.title == "Record" {
-                            soundRecorder.record()
-                            recBtn.title = "Stop"
+                            do {
+                                soundRecorder.record()
+                                recBtn.title = "Stop"
+                            } catch {
+                                print(error)
+                            }
                         } else {
                             soundRecorder.stop()
                             recBtn.title = "Record"
