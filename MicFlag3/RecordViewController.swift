@@ -22,9 +22,6 @@ class RecordViewController: UIViewController, AVAudioPlayerDelegate, AVAudioReco
     let userDefaults = NSUserDefaults.standardUserDefaults()
     
     func getCacheDirectory() -> NSURL {
-//        let paths = NSSearchPathForDirectoriesInDomains(.DocumentationDirectory, .UserDomainMask, true)
-//        print(paths[0])
-//        return paths[0]
         let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
         return documentsURL
     }
@@ -49,19 +46,15 @@ class RecordViewController: UIViewController, AVAudioPlayerDelegate, AVAudioReco
         let components = calendar.components([.Hour, .Minute, .Second, .Day, .Month, .Year], fromDate: date)
         newFileName = ""
         newFileName = fileName + "_\(components.month)_\(components.day)_\(components.year)_\(components.hour)_\(components.minute)_\(components.second).m4a"
-        
+        saveFileReference()
         let path = getCacheDirectory().URLByAppendingPathComponent(newFileName)
         
         print(path)
-//        let filePath = NSURL(fileURLWithPath: path)
-//        let filePath = NSURL(fileReferenceLiteral: path)
-//        saveFileReference()
         return path
     }
     
     func getFileURL() -> NSURL {
         let pathToRecording = getCacheDirectory().URLByAppendingPathComponent(newFileName)
-//        let filePathToRecording = NSURL(fileURLWithPath: pathToRecording)
         return pathToRecording
     }
     
@@ -100,73 +93,26 @@ class RecordViewController: UIViewController, AVAudioPlayerDelegate, AVAudioReco
         
     }
     
-    func preparePlayer() {
-        var error: NSError?
-        
-        do {
-            soundPlayer = try AVAudioPlayer(contentsOfURL: getFileURL())
-        } catch let error1 as NSError {
-            error = error1
-            soundPlayer = nil
-        }
-        
-        if let err = error {
-            print("AVAudioPlayer error: \(err.localizedDescription)")
-        } else {
-            do {
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-                try AVAudioSession.sharedInstance().setActive(true)
-                soundPlayer.delegate = self
-                soundPlayer.prepareToPlay()
-                soundPlayer.volume = 1.0
-            } catch {
-                print(error)
-            }
-        }
-    }
-    
     @IBAction func recActn(sender: UIBarButtonItem) {
         print("record started")
-                        if sender.title == "Record" {
-                            do {
-                                soundRecorder.record()
-                                recBtn.title = "Stop"
-                            } catch {
-                                print(error)
-                            }
-                        } else {
-                            soundRecorder.stop()
-                            recBtn.title = "Record"
-                            plyBtn.enabled = true
-//                            setupRecorder()
-                        }
-
+        if sender.title == "Record" {
+            soundRecorder.record()
+            recBtn.title = "Stop"
+        } else {
+            soundRecorder.stop()
+            recBtn.title = "Record"
+            plyBtn.enabled = true
+        }
     }
-    
-    @IBAction func plyActn(sender: UIBarButtonItem) {
-        if sender.title == "Play" {
-                                    recBtn.enabled = false
-                                    sender.title = "Stop"
-                                    preparePlayer()
-                                    soundPlayer.play()
-                                } else {
-                                    soundPlayer.stop()
-                                    sender.title = "Play"
-                                    recBtn.enabled = true
-                                }
-    }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         recImgView.image = slctdImg
         setupRecorder()
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 

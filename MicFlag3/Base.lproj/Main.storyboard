@@ -97,6 +97,7 @@
                                     <barButtonItem title="Play" id="Ofk-ib-JIW">
                                         <connections>
                                             <action selector="plyActn:" destination="dbB-Wl-pvP" id="VdV-d2-Jlp"/>
+                                            <segue destination="MtR-SU-Sxo" kind="show" id="BXU-6O-0B8"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -130,10 +131,10 @@
             </objects>
             <point key="canvasLocation" x="521.5" y="407.5"/>
         </scene>
-        <!--View Controller-->
+        <!--Recordings List Controller-->
         <scene sceneID="0oh-SD-lVQ">
             <objects>
-                <viewController id="MtR-SU-Sxo" sceneMemberID="viewController">
+                <viewController id="MtR-SU-Sxo" customClass="RecordingsListController" customModule="MicFlag3" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2Yc-UN-NDc"/>
                         <viewControllerLayoutGuide type="bottom" id="xIG-1U-Rjb"/>
@@ -141,13 +142,67 @@
                     <view key="view" contentMode="scaleToFill" id="SNc-d8-KeG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n7e-De-D0o">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Recordings" id="MHW-hk-mMH"/>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KZD-Ts-CoZ">
+                                <rect key="frame" x="0.0" y="72" width="375" height="551"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="z8H-Os-73Q">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="z8H-Os-73Q" id="4GH-E1-hXS">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="MtR-SU-Sxo" id="edM-zJ-bKP"/>
+                                    <outlet property="delegate" destination="MtR-SU-Sxo" id="87G-Jg-ryX"/>
+                                </connections>
+                            </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jXU-t8-x6t">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem title="Record" id="La1-TT-pIV">
+                                        <connections>
+                                            <segue destination="dbB-Wl-pvP" kind="show" id="A3n-O4-gPm"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="KZD-Ts-CoZ" firstAttribute="top" secondItem="n7e-De-D0o" secondAttribute="bottom" id="EPU-WC-04h"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="KZD-Ts-CoZ" secondAttribute="trailing" constant="-20" id="EYO-0d-ha4"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="jXU-t8-x6t" secondAttribute="trailing" constant="-20" id="PTe-hf-hiU"/>
+                            <constraint firstItem="xIG-1U-Rjb" firstAttribute="top" secondItem="jXU-t8-x6t" secondAttribute="bottom" id="aLw-rx-1iV"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="n7e-De-D0o" secondAttribute="trailing" constant="-20" id="cT0-5c-N4d"/>
+                            <constraint firstItem="jXU-t8-x6t" firstAttribute="top" secondItem="KZD-Ts-CoZ" secondAttribute="bottom" id="gOX-bM-kWj"/>
+                            <constraint firstItem="n7e-De-D0o" firstAttribute="leading" secondItem="SNc-d8-KeG" secondAttribute="leadingMargin" constant="-20" id="kuO-30-dfU"/>
+                            <constraint firstItem="jXU-t8-x6t" firstAttribute="leading" secondItem="SNc-d8-KeG" secondAttribute="leadingMargin" constant="-20" id="pE5-DP-Wzc"/>
+                            <constraint firstItem="n7e-De-D0o" firstAttribute="top" secondItem="2Yc-UN-NDc" secondAttribute="bottom" constant="8" id="rxe-Or-EIg"/>
+                            <constraint firstItem="KZD-Ts-CoZ" firstAttribute="leading" secondItem="SNc-d8-KeG" secondAttribute="leadingMargin" constant="-20" id="ty9-7O-72g"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="recordingsListTable" destination="KZD-Ts-CoZ" id="NY2-iH-FFe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pNn-di-C0b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="961.5" y="407.5"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="A3n-O4-gPm"/>
+    </inferredMetricsTieBreakers>
 </document>

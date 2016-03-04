@@ -13,6 +13,7 @@
 		C11105731C88264B0029AA3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C11105721C88264B0029AA3E /* Assets.xcassets */; };
 		C11105761C88264B0029AA3E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C11105741C88264B0029AA3E /* LaunchScreen.storyboard */; };
 		C111057E1C882B3F0029AA3E /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C111057D1C882B3F0029AA3E /* RecordViewController.swift */; };
+		D831F5331C8A12500086E09B /* RecordingsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D831F5321C8A12500086E09B /* RecordingsListController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		C11105751C88264B0029AA3E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C11105771C88264B0029AA3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C111057D1C882B3F0029AA3E /* RecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
+		D831F5321C8A12500086E09B /* RecordingsListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordingsListController.swift; path = ../RecordingsListController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				C111056B1C88264B0029AA3E /* AppDelegate.swift */,
+				D831F5321C8A12500086E09B /* RecordingsListController.swift */,
 				C111056D1C88264B0029AA3E /* ViewController.swift */,
 				C111056F1C88264B0029AA3E /* Main.storyboard */,
 				C111057D1C882B3F0029AA3E /* RecordViewController.swift */,
@@ -140,6 +143,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C111057E1C882B3F0029AA3E /* RecordViewController.swift in Sources */,
+				D831F5331C8A12500086E09B /* RecordingsListController.swift in Sources */,
 				C111056E1C88264B0029AA3E /* ViewController.swift in Sources */,
 				C111056C1C88264B0029AA3E /* AppDelegate.swift in Sources */,
 			);
