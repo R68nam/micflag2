@@ -17,6 +17,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var toRecViewBtn: UIButton!
     
     var imagePicker = UIImagePickerController()
+//    var userDefaults = NSUserDefaults.standardUserDefaults()
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         imagePicker.dismissViewControllerAnimated(true, completion: nil)
@@ -27,6 +28,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             imgVw.contentMode = .ScaleAspectFit
             imgVw.image = pickedImage
             slctdImg = pickedImage
+//            userDefaults.setObject(slctdImg, forKey: "micFlagImage")
         }
         dismissViewControllerAnimated(true, completion: nil)
         toRecViewBtn.enabled = true
@@ -41,6 +43,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.viewDidLoad()
         imagePicker.delegate = self
         toRecViewBtn.enabled = false
+//        if (userDefaults.objectForKey("micFlagImage") != nil) {
+//            print("image exists")
+//        }
     }
 
     override func didReceiveMemoryWarning() {

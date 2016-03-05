@@ -96,6 +96,7 @@ class RecordViewController: UIViewController, AVAudioPlayerDelegate, AVAudioReco
     @IBAction func recActn(sender: UIBarButtonItem) {
         print("record started")
         if sender.title == "Record" {
+            setupRecorder()
             soundRecorder.record()
             recBtn.title = "Stop"
         } else {
@@ -108,7 +109,6 @@ class RecordViewController: UIViewController, AVAudioPlayerDelegate, AVAudioReco
     override func viewDidLoad() {
         super.viewDidLoad()
         recImgView.image = slctdImg
-        setupRecorder()
     }
 
     override func didReceiveMemoryWarning() {

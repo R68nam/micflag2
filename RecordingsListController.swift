@@ -11,15 +11,17 @@ import AVFoundation
 
 class RecordingsListController: UIViewController, UITableViewDelegate, AVAudioPlayerDelegate {
 
-    @IBOutlet var recordingsListTable: UITableView!
+    @IBOutlet var recordingsListTable : UITableView!
     let userDefaults = NSUserDefaults.standardUserDefaults()
     var soundPlayer : AVAudioPlayer!
     var recordings : [String]!
     var selectedRecording : String!
+    var selectedTableRow : UITableViewCell!
+    var isPlaying : Bool!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        isPlaying = false
         // Do any additional setup after loading the view.
     }
 
@@ -30,7 +32,21 @@ class RecordingsListController: UIViewController, UITableViewDelegate, AVAudioPl
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "Cell")
-        cell.textLabel?.text = recordings[indexPath.row]
+        let fileString = recordings[indexPath.row]
+        let fileStringArray = fileString.componentsSeparatedByString("_")
+        let recDateComponents = NSDateComponents()
+        recDateComponents.year = Int(fileStringArray[3])!
+        recDateComponents.month = Int(fileStringArray[1])!
+        recDateComponents.day = Int(fileStringArray[2])!
+        recDateComponents.hour = Int(fileStringArray[4])!
+        recDateComponents.minute = Int(fileStringArray[5])!
+        recDateComponents.second = Int(fileStringArray[6].componentsSeparatedByString(".")[0])!
+        let recDate = NSCalendar.currentCalendar().dateFromComponents(recDateComponents)
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateStyle = NSDateFormatterStyle.LongStyle
+        dateFormatter.timeStyle = .MediumStyle
+        let finalDateString = dateFormatter.stringFromDate(recDate!)
+        cell.textLabel?.text = finalDateString
         return cell
     }
     
@@ -46,8 +62,6 @@ class RecordingsListController: UIViewController, UITableViewDelegate, AVAudioPl
         let share = UITableViewRowAction(style: .Normal, title: "Share") { action, index in
             let fileToShare = self.recordings[indexPath.row]
             let pathToFileToShare = self.getCacheDirectory().URLByAppendingPathComponent(fileToShare)
-//            let fileData = NSData(contentsOfURL: pathToFileToShare)
-//            let sendData = fileData
             let activityView = UIActivityViewController(activityItems: [pathToFileToShare], applicationActivities: nil)
             self.presentViewController(activityView, animated: true, completion: nil)
         }
@@ -97,9 +111,23 @@ class RecordingsListController: UIViewController, UITableViewDelegate, AVAudioPl
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print(recordings[indexPath.row])
-        selectedRecording = recordings[indexPath.row]
-        preparePlayer()
-        soundPlayer.play()
+        if isPlaying == false {
+            isPlaying = true
+            selectedRecording = recordings[indexPath.row]
+            selectedTableRow = recordingsListTable.cellForRowAtIndexPath(indexPath)!
+            selectedTableRow.contentView.backgroundColor = UIColor.greenColor()
+            preparePlayer()
+            soundPlayer.play()
+        } else {
+            isPlaying = false
+            soundPlayer.stop()
+            selectedTableRow.contentView.backgroundColor = UIColor.whiteColor()
+        }
+    }
+    
+    func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
+        print("audio done playing")
+        selectedTableRow.contentView.backgroundColor = UIColor.whiteColor()
     }
     
     override func didReceiveMemoryWarning() {
