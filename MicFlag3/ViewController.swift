@@ -10,6 +10,16 @@ import UIKit
 
     var slctdImg:UIImage!
 
+func getDocumentsURL() -> NSURL {
+    let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
+    return documentsURL
+}
+
+func fileInDocumentsDirectory(filename: String) -> String {
+    let fileURL = getDocumentsURL().URLByAppendingPathComponent(filename)
+    return fileURL.path!
+}
+
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var imgPckBtn: UIButton!
@@ -17,18 +27,44 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var toRecViewBtn: UIButton!
     
     var imagePicker = UIImagePickerController()
-//    var userDefaults = NSUserDefaults.standardUserDefaults()
+    var imagePicked : Bool!
+    var data : NSData!
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         imagePicker.dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    func loadImageFromPath(path: String) -> UIImage? {
+        
+        let image = UIImage(contentsOfFile: path)
+        
+        if image == nil {
+            
+            print("missing image at: \(path)")
+        } else {
+            print("Loading image from path: \(path)")
+            imgVw.image = image
+            slctdImg = image
+            toRecViewBtn.enabled = true
+        }
+        return image
+        
+    }
+    
+    func saveImage (image: UIImage, path: String ) -> Bool{
+        let pngImageData = UIImagePNGRepresentation(image)
+        let result = pngImageData!.writeToFile(path, atomically: true)
+        return result
+    }
+    
+    let imagePath = fileInDocumentsDirectory("micFlagImg.png")
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imgVw.contentMode = .ScaleAspectFit
             imgVw.image = pickedImage
             slctdImg = pickedImage
-//            userDefaults.setObject(slctdImg, forKey: "micFlagImage")
+            saveImage(slctdImg, path: imagePath)
         }
         dismissViewControllerAnimated(true, completion: nil)
         toRecViewBtn.enabled = true
@@ -43,14 +79,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.viewDidLoad()
         imagePicker.delegate = self
         toRecViewBtn.enabled = false
-//        if (userDefaults.objectForKey("micFlagImage") != nil) {
-//            print("image exists")
-//        }
+        loadImageFromPath(imagePath)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
 
 
