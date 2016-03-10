@@ -105,8 +105,12 @@
                                 </items>
                             </toolbar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lq5-M4-x8s">
-                                <rect key="frame" x="161" y="536" width="52" height="58"/>
-                                <state key="normal" image="rec_start.png"/>
+                                <rect key="frame" x="161" y="542" width="52" height="52"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="CWm-pP-fGP"/>
+                                    <constraint firstAttribute="width" constant="52" id="LgZ-9O-JtV"/>
+                                </constraints>
+                                <state key="normal" image="rec_start_icon.png"/>
                                 <connections>
                                     <action selector="handleRec:" destination="dbB-Wl-pvP" eventType="touchUpInside" id="ouR-Vo-ZfG"/>
                                 </connections>
@@ -128,14 +132,33 @@
                                     <constraint firstItem="TDZ-Sg-TG2" firstAttribute="leading" secondItem="RXU-oO-TMs" secondAttribute="leading" id="uVa-9R-Av5"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tvu-OS-TWX">
+                                <rect key="frame" x="228" y="552" width="32" height="32"/>
+                                <state key="normal" image="rec_ok_disabled.png"/>
+                                <connections>
+                                    <action selector="handleRecOk:" destination="dbB-Wl-pvP" eventType="touchUpInside" id="Ufq-KG-MBM"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saved" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fu7-eL-HWD">
+                                <rect key="frame" x="161" y="597" width="52" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.0" green="0.8625907512626263" blue="0.00026405955300153592" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="gM3-Ih-X8C" firstAttribute="top" secondItem="Fu7-eL-HWD" secondAttribute="bottom" constant="5" id="1Gb-g6-Yav"/>
+                            <constraint firstItem="lq5-M4-x8s" firstAttribute="centerX" secondItem="gM3-Ih-X8C" secondAttribute="centerX" id="1pG-bM-FFI"/>
+                            <constraint firstItem="Tvu-OS-TWX" firstAttribute="leading" secondItem="lq5-M4-x8s" secondAttribute="trailing" constant="15" id="4hJ-8G-cio"/>
+                            <constraint firstItem="lq5-M4-x8s" firstAttribute="centerY" secondItem="Tvu-OS-TWX" secondAttribute="centerY" id="5Yw-E4-iWC"/>
+                            <constraint firstItem="Fu7-eL-HWD" firstAttribute="leading" secondItem="lq5-M4-x8s" secondAttribute="leading" id="5q4-sz-0xP"/>
                             <constraint firstItem="gM3-Ih-X8C" firstAttribute="leading" secondItem="Quf-Py-pjV" secondAttribute="leading" id="BjQ-aC-eTp"/>
-                            <constraint firstItem="gM3-Ih-X8C" firstAttribute="top" secondItem="lq5-M4-x8s" secondAttribute="bottom" constant="29" id="KYV-Tu-8qn"/>
+                            <constraint firstItem="gM3-Ih-X8C" firstAttribute="top" secondItem="lq5-M4-x8s" secondAttribute="bottom" constant="29" id="FEx-gi-5Pc"/>
+                            <constraint firstItem="Fu7-eL-HWD" firstAttribute="trailing" secondItem="lq5-M4-x8s" secondAttribute="trailing" id="Fjw-wb-VNp"/>
                             <constraint firstItem="RXU-oO-TMs" firstAttribute="trailing" secondItem="gM3-Ih-X8C" secondAttribute="trailing" id="PWO-Vs-nDc"/>
                             <constraint firstAttribute="trailing" secondItem="gM3-Ih-X8C" secondAttribute="trailing" id="Q41-l4-z3r"/>
-                            <constraint firstItem="lq5-M4-x8s" firstAttribute="centerX" secondItem="gM3-Ih-X8C" secondAttribute="centerX" id="RFw-LD-P8z"/>
+                            <constraint firstItem="Fu7-eL-HWD" firstAttribute="top" secondItem="lq5-M4-x8s" secondAttribute="bottom" constant="3" id="SES-yZ-o6J"/>
                             <constraint firstItem="RXU-oO-TMs" firstAttribute="top" secondItem="SLv-DO-Rm7" secondAttribute="bottom" constant="8" symbolic="YES" id="XE0-ha-jFe"/>
                             <constraint firstItem="gM3-Ih-X8C" firstAttribute="bottom" secondItem="O1R-xw-5c3" secondAttribute="top" id="nB8-u0-dEd"/>
                             <constraint firstItem="RXU-oO-TMs" firstAttribute="leading" secondItem="gM3-Ih-X8C" secondAttribute="leading" id="tYr-HU-hiU"/>
@@ -147,6 +170,8 @@
                         <outlet property="plyBtn" destination="Ofk-ib-JIW" id="dN7-oa-tzv"/>
                         <outlet property="recBtnNew" destination="lq5-M4-x8s" id="xxD-yp-k4O"/>
                         <outlet property="recImgView" destination="TDZ-Sg-TG2" id="WnG-RI-ee0"/>
+                        <outlet property="recOkBtn" destination="Tvu-OS-TWX" id="f9u-pT-IAd"/>
+                        <outlet property="savedNotification" destination="Fu7-eL-HWD" id="YYv-Fe-Y4a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="64F-kf-LeZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -231,7 +256,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="rec_start.png" width="52" height="58"/>
+        <image name="rec_ok_disabled.png" width="32" height="32"/>
+        <image name="rec_start_icon.png" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="uAA-7R-kcJ"/>

@@ -15,12 +15,15 @@ class RecordViewController: UIViewController, AVAudioPlayerDelegate, AVAudioReco
     @IBOutlet weak var recImgView: UIImageView!
     @IBOutlet weak var plyBtn: UIBarButtonItem!
     @IBOutlet var recBtnNew: UIButton!
+    @IBOutlet var recOkBtn: UIButton!
+    @IBOutlet var savedNotification: UILabel!
     
     var soundRecorder : AVAudioRecorder!
     var soundPlayer : AVAudioPlayer!
     var fileName = "micFlagRecording"
     var newFileName = ""
     var recInSession : Bool = false
+    var recPaused : Bool = false
     let userDefaults = NSUserDefaults.standardUserDefaults()
     
     override func shouldAutorotate() -> Bool {
@@ -110,25 +113,62 @@ class RecordViewController: UIViewController, AVAudioPlayerDelegate, AVAudioReco
         
     }
     
+    func clearSaveNotification() {
+        savedNotification.hidden = true
+    }
+    
+    @IBAction func handleRecOk(sender: UIButton) {
+        let recOkDisable = UIImage(named: "rec_ok_disabled.png")
+        soundRecorder.stop()
+        savedNotification.hidden = false
+        plyBtn.enabled = true
+        recInSession = false
+        recPaused = false
+        recOkBtn.setImage(recOkDisable, forState: .Normal)
+        NSTimer.scheduledTimerWithTimeInterval(1.5, target: self, selector: Selector("clearSaveNotification"), userInfo: nil, repeats: false)
+    }
+    
     @IBAction func handleRec(sender: UIButton) {
-        let recStrtImg = UIImage(named: "rec_start.png")
-        let recStpImg = UIImage(named: "stop_rec.png")
+        let recStrtImg = UIImage(named: "rec_start_icon.png")
+        let recPauseImg = UIImage(named: "rec_pause_icon.png")
+        let recOkDisable = UIImage(named: "rec_ok_disabled.png")
+        let recOkEnabled = UIImage(named: "rec_ok_enabled.png")
         print("handle rec action")
-        if !recInSession {
-            recBtnNew.setImage(recStpImg, forState: .Normal)
+//        if !recInSession {
+//            recBtnNew.setImage(recPauseImg, forState: .Normal)
+//            setupRecorder()
+//            soundRecorder.record()
+//            recInSession = true
+//        } else {
+//            recBtnNew.setImage(recStrtImg, forState: .Normal)
+//            soundRecorder.pause()
+//        }
+        
+        if recInSession == false && recPaused == false {
+            print("new rec")
+            recBtnNew.setImage(recPauseImg, forState: .Normal)
             setupRecorder()
             soundRecorder.record()
             recInSession = true
-        } else {
+            plyBtn.enabled = false
+        } else if recInSession == true && recPaused == false {
+            print("rec paused")
+            soundRecorder.pause()
+            recPaused = true
+            recOkBtn.setImage(recOkEnabled, forState: .Normal)
             recBtnNew.setImage(recStrtImg, forState: .Normal)
-            soundRecorder.stop()
-            plyBtn.enabled = true
-            recInSession = false
+        } else {
+            print("rec restarted")
+            soundRecorder.record()
+            recPaused = false
+            recOkBtn.setImage(recOkDisable, forState: .Normal)
+            recBtnNew.setImage(recPauseImg, forState: .Normal)
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        savedNotification.hidden = true
         recImgView.image = slctdImg
         recImgView.clipsToBounds = true
     }

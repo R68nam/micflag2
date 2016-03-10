@@ -17,6 +17,10 @@
 		D831F5351C8A54CC0086E09B /* recording.gif in Resources */ = {isa = PBXBuildFile; fileRef = D831F5341C8A54CC0086E09B /* recording.gif */; };
 		D8EF10E41C90A88300E00198 /* rec_start.png in Resources */ = {isa = PBXBuildFile; fileRef = D8EF10E31C90A88300E00198 /* rec_start.png */; };
 		D8EF10E61C90A93E00E00198 /* stop_rec.png in Resources */ = {isa = PBXBuildFile; fileRef = D8EF10E51C90A93E00E00198 /* stop_rec.png */; };
+		D8EF10EB1C92048F00E00198 /* rec_ok_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = D8EF10E71C92048F00E00198 /* rec_ok_disabled.png */; };
+		D8EF10EC1C92048F00E00198 /* rec_ok_enabled.png in Resources */ = {isa = PBXBuildFile; fileRef = D8EF10E81C92048F00E00198 /* rec_ok_enabled.png */; };
+		D8EF10ED1C92048F00E00198 /* rec_pause_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D8EF10E91C92048F00E00198 /* rec_pause_icon.png */; };
+		D8EF10EE1C92048F00E00198 /* rec_start_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D8EF10EA1C92048F00E00198 /* rec_start_icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +36,10 @@
 		D831F5341C8A54CC0086E09B /* recording.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = recording.gif; path = ../../../../../Downloads/recording.gif; sourceTree = "<group>"; };
 		D8EF10E31C90A88300E00198 /* rec_start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rec_start.png; path = "../../../../../../../Volumes/Company/Internal Projects/iPhone_Assets/assets1/assets1/Flatimus/Icons/rec_start.png"; sourceTree = "<group>"; };
 		D8EF10E51C90A93E00E00198 /* stop_rec.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stop_rec.png; path = "../../../../../../../Volumes/Company/Internal Projects/iPhone_Assets/assets1/assets1/Flatimus/Icons/stop_rec.png"; sourceTree = "<group>"; };
+		D8EF10E71C92048F00E00198 /* rec_ok_disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rec_ok_disabled.png; path = ../../../../../Downloads/rec_ok_disabled.png; sourceTree = "<group>"; };
+		D8EF10E81C92048F00E00198 /* rec_ok_enabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rec_ok_enabled.png; path = ../../../../../Downloads/rec_ok_enabled.png; sourceTree = "<group>"; };
+		D8EF10E91C92048F00E00198 /* rec_pause_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rec_pause_icon.png; path = ../../../../../Downloads/rec_pause_icon.png; sourceTree = "<group>"; };
+		D8EF10EA1C92048F00E00198 /* rec_start_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rec_start_icon.png; path = ../../../../../Downloads/rec_start_icon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +77,10 @@
 				C111056D1C88264B0029AA3E /* ViewController.swift */,
 				C111056F1C88264B0029AA3E /* Main.storyboard */,
 				D8EF10E51C90A93E00E00198 /* stop_rec.png */,
+				D8EF10E71C92048F00E00198 /* rec_ok_disabled.png */,
+				D8EF10E81C92048F00E00198 /* rec_ok_enabled.png */,
+				D8EF10E91C92048F00E00198 /* rec_pause_icon.png */,
+				D8EF10EA1C92048F00E00198 /* rec_start_icon.png */,
 				D831F5341C8A54CC0086E09B /* recording.gif */,
 				C111057D1C882B3F0029AA3E /* RecordViewController.swift */,
 				D8EF10E31C90A88300E00198 /* rec_start.png */,
@@ -138,11 +150,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8EF10EE1C92048F00E00198 /* rec_start_icon.png in Resources */,
 				D8EF10E61C90A93E00E00198 /* stop_rec.png in Resources */,
 				C11105761C88264B0029AA3E /* LaunchScreen.storyboard in Resources */,
+				D8EF10EC1C92048F00E00198 /* rec_ok_enabled.png in Resources */,
 				D8EF10E41C90A88300E00198 /* rec_start.png in Resources */,
+				D8EF10ED1C92048F00E00198 /* rec_pause_icon.png in Resources */,
 				C11105731C88264B0029AA3E /* Assets.xcassets in Resources */,
 				D831F5351C8A54CC0086E09B /* recording.gif in Resources */,
+				D8EF10EB1C92048F00E00198 /* rec_ok_disabled.png in Resources */,
 				C11105711C88264B0029AA3E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

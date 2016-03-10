@@ -69,6 +69,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func saveImage (image: UIImage, path: String ) -> Bool{
+        print(image.imageOrientation.rawValue)
         let pngImageData = UIImageJPEGRepresentation(image, 1.0)
         let result = pngImageData!.writeToFile(path, atomically: true)
         return result
