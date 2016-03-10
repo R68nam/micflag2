@@ -15,6 +15,8 @@
 		C111057E1C882B3F0029AA3E /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C111057D1C882B3F0029AA3E /* RecordViewController.swift */; };
 		D831F5331C8A12500086E09B /* RecordingsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D831F5321C8A12500086E09B /* RecordingsListController.swift */; };
 		D831F5351C8A54CC0086E09B /* recording.gif in Resources */ = {isa = PBXBuildFile; fileRef = D831F5341C8A54CC0086E09B /* recording.gif */; };
+		D8EF10E41C90A88300E00198 /* rec_start.png in Resources */ = {isa = PBXBuildFile; fileRef = D8EF10E31C90A88300E00198 /* rec_start.png */; };
+		D8EF10E61C90A93E00E00198 /* stop_rec.png in Resources */ = {isa = PBXBuildFile; fileRef = D8EF10E51C90A93E00E00198 /* stop_rec.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		C111057D1C882B3F0029AA3E /* RecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		D831F5321C8A12500086E09B /* RecordingsListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordingsListController.swift; path = ../RecordingsListController.swift; sourceTree = "<group>"; };
 		D831F5341C8A54CC0086E09B /* recording.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = recording.gif; path = ../../../../../Downloads/recording.gif; sourceTree = "<group>"; };
+		D8EF10E31C90A88300E00198 /* rec_start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rec_start.png; path = "../../../../../../../Volumes/Company/Internal Projects/iPhone_Assets/assets1/assets1/Flatimus/Icons/rec_start.png"; sourceTree = "<group>"; };
+		D8EF10E51C90A93E00E00198 /* stop_rec.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stop_rec.png; path = "../../../../../../../Volumes/Company/Internal Projects/iPhone_Assets/assets1/assets1/Flatimus/Icons/stop_rec.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,8 +68,10 @@
 				D831F5321C8A12500086E09B /* RecordingsListController.swift */,
 				C111056D1C88264B0029AA3E /* ViewController.swift */,
 				C111056F1C88264B0029AA3E /* Main.storyboard */,
+				D8EF10E51C90A93E00E00198 /* stop_rec.png */,
 				D831F5341C8A54CC0086E09B /* recording.gif */,
 				C111057D1C882B3F0029AA3E /* RecordViewController.swift */,
+				D8EF10E31C90A88300E00198 /* rec_start.png */,
 				C11105721C88264B0029AA3E /* Assets.xcassets */,
 				C11105741C88264B0029AA3E /* LaunchScreen.storyboard */,
 				C11105771C88264B0029AA3E /* Info.plist */,
@@ -132,7 +138,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8EF10E61C90A93E00E00198 /* stop_rec.png in Resources */,
 				C11105761C88264B0029AA3E /* LaunchScreen.storyboard in Resources */,
+				D8EF10E41C90A88300E00198 /* rec_start.png in Resources */,
 				C11105731C88264B0029AA3E /* Assets.xcassets in Resources */,
 				D831F5351C8A54CC0086E09B /* recording.gif in Resources */,
 				C11105711C88264B0029AA3E /* Main.storyboard in Resources */,

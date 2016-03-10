@@ -8,27 +8,42 @@
 
 import UIKit
 
-    var slctdImg:UIImage!
+    var slctdImg : UIImage!
 
-func getDocumentsURL() -> NSURL {
-    let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
-    return documentsURL
-}
+    func getDocumentsURL() -> NSURL {
+        let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
+        return documentsURL
+    }
 
-func fileInDocumentsDirectory(filename: String) -> String {
-    let fileURL = getDocumentsURL().URLByAppendingPathComponent(filename)
-    return fileURL.path!
-}
+    func fileInDocumentsDirectory(filename: String) -> String {
+        let fileURL = getDocumentsURL().URLByAppendingPathComponent(filename)
+        return fileURL.path!
+    }
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var imgPckBtn: UIButton!
-    @IBOutlet weak var imgVw: UIImageView!
+    @IBOutlet var imgVw: UIImageView!
     @IBOutlet weak var toRecViewBtn: UIButton!
     
     var imagePicker = UIImagePickerController()
     var imagePicked : Bool!
     var data : NSData!
+    
+    override func shouldAutorotate() -> Bool {
+        if (UIDevice.currentDevice().orientation == UIDeviceOrientation.LandscapeLeft ||
+            UIDevice.currentDevice().orientation == UIDeviceOrientation.LandscapeRight ||
+            UIDevice.currentDevice().orientation == UIDeviceOrientation.Unknown) {
+                return false
+        }
+        else {
+            return true
+        }
+    }
+    
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return [UIInterfaceOrientationMask.Portrait ,UIInterfaceOrientationMask.PortraitUpsideDown]
+    }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         imagePicker.dismissViewControllerAnimated(true, completion: nil)
@@ -37,15 +52,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func loadImageFromPath(path: String) -> UIImage? {
         
         let image = UIImage(contentsOfFile: path)
-        
+        print(image)
         if image == nil {
             
             print("missing image at: \(path)")
         } else {
             print("Loading image from path: \(path)")
+            print(image!.imageOrientation.rawValue)
             imgVw.image = image
             slctdImg = image
-            toRecViewBtn.enabled = true
         }
         return image
         
@@ -59,15 +74,23 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     let imagePath = fileInDocumentsDirectory("micFlagImg.png")
     
+    func recViewSegue() {
+        dispatch_async(dispatch_get_main_queue()) {
+            self.performSegueWithIdentifier("recViewSegue", sender: true)
+        }
+    }
+    
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imgVw.contentMode = .ScaleAspectFit
+            print(pickedImage.imageOrientation)
             imgVw.image = pickedImage
             slctdImg = pickedImage
             saveImage(slctdImg, path: imagePath)
         }
-        dismissViewControllerAnimated(true, completion: nil)
-        toRecViewBtn.enabled = true
+        dismissViewControllerAnimated(true) { () -> Void in
+            self.recViewSegue()
+        }
     }
     
     @IBAction func imgPckBtnClck(sender: UIButton) {
@@ -75,11 +98,21 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         imagePicker.sourceType = .PhotoLibrary
         presentViewController(imagePicker, animated: true, completion: nil)
     }
+    
+    func imageTapped(img: AnyObject) {
+        recViewSegue()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
-        toRecViewBtn.enabled = false
         loadImageFromPath(imagePath)
+        let imageView = imgVw
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("imageTapped:"))
+        imageView.userInteractionEnabled = true
+        imageView.addGestureRecognizer(tapGestureRecognizer)
+        imgPckBtn.layer.borderWidth = 1
+        imgPckBtn.layer.borderColor = UIColor.grayColor().CGColor
     }
 
     override func didReceiveMemoryWarning() {

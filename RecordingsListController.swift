@@ -18,11 +18,36 @@ class RecordingsListController: UIViewController, UITableViewDelegate, AVAudioPl
     var selectedRecording : String!
     var selectedTableRow : UITableViewCell!
     var isPlaying : Bool!
+    var isTableCellEditing : Bool = false
+    
+    override func shouldAutorotate() -> Bool {
+        if (UIDevice.currentDevice().orientation == UIDeviceOrientation.LandscapeLeft ||
+            UIDevice.currentDevice().orientation == UIDeviceOrientation.LandscapeRight ||
+            UIDevice.currentDevice().orientation == UIDeviceOrientation.Unknown) {
+                return false
+        }
+        else {
+            return true
+        }
+    }
+    
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return [UIInterfaceOrientationMask.Portrait ,UIInterfaceOrientationMask.PortraitUpsideDown]
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         isPlaying = false
-        // Do any additional setup after loading the view.
+    }
+    
+    @IBAction func editTableRows(sender: AnyObject) {
+        if !isTableCellEditing {
+            recordingsListTable.editing = true
+            isTableCellEditing = true
+        } else {
+            recordingsListTable.editing = false
+            isTableCellEditing = false
+        }
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -67,7 +92,7 @@ class RecordingsListController: UIViewController, UITableViewDelegate, AVAudioPl
         }
         share.backgroundColor = UIColor.blueColor()
                 
-        return [share, delete]
+        return [delete, share]
     }
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -134,16 +159,5 @@ class RecordingsListController: UIViewController, UITableViewDelegate, AVAudioPl
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

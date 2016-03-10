@@ -7,19 +7,36 @@
 //
 
 import UIKit
-import AVFoundation
+import AVFoundation 
 
 class RecordViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDelegate {
 
+//    @IBOutlet var recImgView: UIImageView!
     @IBOutlet weak var recImgView: UIImageView!
-    @IBOutlet weak var recBtn: UIBarButtonItem!
     @IBOutlet weak var plyBtn: UIBarButtonItem!
+    @IBOutlet var recBtnNew: UIButton!
     
     var soundRecorder : AVAudioRecorder!
     var soundPlayer : AVAudioPlayer!
     var fileName = "micFlagRecording"
     var newFileName = ""
+    var recInSession : Bool = false
     let userDefaults = NSUserDefaults.standardUserDefaults()
+    
+    override func shouldAutorotate() -> Bool {
+        if (UIDevice.currentDevice().orientation == UIDeviceOrientation.LandscapeLeft ||
+            UIDevice.currentDevice().orientation == UIDeviceOrientation.LandscapeRight ||
+            UIDevice.currentDevice().orientation == UIDeviceOrientation.Unknown) {
+                return false
+        }
+        else {
+            return true
+        }
+    }
+    
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return [UIInterfaceOrientationMask.Portrait ,UIInterfaceOrientationMask.PortraitUpsideDown]
+    }
     
     func getCacheDirectory() -> NSURL {
         let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
@@ -93,22 +110,27 @@ class RecordViewController: UIViewController, AVAudioPlayerDelegate, AVAudioReco
         
     }
     
-    @IBAction func recActn(sender: UIBarButtonItem) {
-        print("record started")
-        if sender.title == "Record" {
+    @IBAction func handleRec(sender: UIButton) {
+        let recStrtImg = UIImage(named: "rec_start.png")
+        let recStpImg = UIImage(named: "stop_rec.png")
+        print("handle rec action")
+        if !recInSession {
+            recBtnNew.setImage(recStpImg, forState: .Normal)
             setupRecorder()
             soundRecorder.record()
-            recBtn.title = "Stop"
+            recInSession = true
         } else {
+            recBtnNew.setImage(recStrtImg, forState: .Normal)
             soundRecorder.stop()
-            recBtn.title = "Record"
             plyBtn.enabled = true
+            recInSession = false
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         recImgView.image = slctdImg
+        recImgView.clipsToBounds = true
     }
 
     override func didReceiveMemoryWarning() {
