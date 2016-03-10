@@ -58,7 +58,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             print("missing image at: \(path)")
         } else {
             print("Loading image from path: \(path)")
-            print(image!.imageOrientation.rawValue)
+            print(image!.imageOrientation)
+            print("width: \(image!.size.width)")
+            print("height: \(image!.size.height)")
             imgVw.image = image
             slctdImg = image
         }
@@ -67,7 +69,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func saveImage (image: UIImage, path: String ) -> Bool{
-        let pngImageData = UIImagePNGRepresentation(image)
+        let pngImageData = UIImageJPEGRepresentation(image, 1.0)
         let result = pngImageData!.writeToFile(path, atomically: true)
         return result
     }
