@@ -52,8 +52,6 @@ class RecordingsListController: UIViewController, UITableViewDelegate, AVAudioPl
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         recordings = userDefaults.objectForKey("micFlagRecordings") as? [String]
-//        recordings = recordings.reverse()
-//        return (recordings?.count)!
         if recordings == nil {
             return 0
         } else {
@@ -140,6 +138,7 @@ class RecordingsListController: UIViewController, UITableViewDelegate, AVAudioPl
                 try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
                 try AVAudioSession.sharedInstance().setActive(true)
                 soundPlayer.delegate = self
+                print(soundPlayer.duration)
                 soundPlayer.prepareToPlay()
                 soundPlayer.volume = 1.0
             } catch {

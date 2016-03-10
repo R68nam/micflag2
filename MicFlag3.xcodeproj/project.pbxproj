@@ -21,6 +21,8 @@
 		D8EF10EC1C92048F00E00198 /* rec_ok_enabled.png in Resources */ = {isa = PBXBuildFile; fileRef = D8EF10E81C92048F00E00198 /* rec_ok_enabled.png */; };
 		D8EF10ED1C92048F00E00198 /* rec_pause_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D8EF10E91C92048F00E00198 /* rec_pause_icon.png */; };
 		D8EF10EE1C92048F00E00198 /* rec_start_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D8EF10EA1C92048F00E00198 /* rec_start_icon.png */; };
+		D8EF10F01C922AF900E00198 /* MicFlagLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8EF10EF1C922AF900E00198 /* MicFlagLaunchScreen.storyboard */; };
+		D8EF10F21C922CA400E00198 /* Launch-iPhone6Plus.png in Resources */ = {isa = PBXBuildFile; fileRef = D8EF10F11C922CA400E00198 /* Launch-iPhone6Plus.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		D8EF10E81C92048F00E00198 /* rec_ok_enabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rec_ok_enabled.png; path = ../../../../../Downloads/rec_ok_enabled.png; sourceTree = "<group>"; };
 		D8EF10E91C92048F00E00198 /* rec_pause_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rec_pause_icon.png; path = ../../../../../Downloads/rec_pause_icon.png; sourceTree = "<group>"; };
 		D8EF10EA1C92048F00E00198 /* rec_start_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rec_start_icon.png; path = ../../../../../Downloads/rec_start_icon.png; sourceTree = "<group>"; };
+		D8EF10EF1C922AF900E00198 /* MicFlagLaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MicFlagLaunchScreen.storyboard; sourceTree = "<group>"; };
+		D8EF10F11C922CA400E00198 /* Launch-iPhone6Plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Launch-iPhone6Plus.png"; path = "../../../../../../../Volumes/Company/Internal Projects/MicFlag/1.0.0/App_assets/Launch-iPhone6Plus.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,11 +84,13 @@
 				D8EF10E71C92048F00E00198 /* rec_ok_disabled.png */,
 				D8EF10E81C92048F00E00198 /* rec_ok_enabled.png */,
 				D8EF10E91C92048F00E00198 /* rec_pause_icon.png */,
+				D8EF10F11C922CA400E00198 /* Launch-iPhone6Plus.png */,
 				D8EF10EA1C92048F00E00198 /* rec_start_icon.png */,
 				D831F5341C8A54CC0086E09B /* recording.gif */,
 				C111057D1C882B3F0029AA3E /* RecordViewController.swift */,
 				D8EF10E31C90A88300E00198 /* rec_start.png */,
 				C11105721C88264B0029AA3E /* Assets.xcassets */,
+				D8EF10EF1C922AF900E00198 /* MicFlagLaunchScreen.storyboard */,
 				C11105741C88264B0029AA3E /* LaunchScreen.storyboard */,
 				C11105771C88264B0029AA3E /* Info.plist */,
 			);
@@ -151,6 +157,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8EF10EE1C92048F00E00198 /* rec_start_icon.png in Resources */,
+				D8EF10F01C922AF900E00198 /* MicFlagLaunchScreen.storyboard in Resources */,
+				D8EF10F21C922CA400E00198 /* Launch-iPhone6Plus.png in Resources */,
 				D8EF10E61C90A93E00E00198 /* stop_rec.png in Resources */,
 				C11105761C88264B0029AA3E /* LaunchScreen.storyboard in Resources */,
 				D8EF10EC1C92048F00E00198 /* rec_ok_enabled.png in Resources */,
@@ -284,6 +292,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MicFlag3/Info.plist;
@@ -299,6 +308,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MicFlag3/Info.plist;
