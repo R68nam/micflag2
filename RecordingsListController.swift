@@ -52,6 +52,7 @@ class RecordingsListController: UIViewController, UITableViewDelegate, AVAudioPl
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         recordings = userDefaults.objectForKey("micFlagRecordings") as? [String]
+        recordings = recordings.reverse()
         return (recordings?.count)!
     }
     

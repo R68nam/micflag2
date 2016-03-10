@@ -104,12 +104,6 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TDZ-Sg-TG2">
-                                <rect key="frame" x="0.0" y="28" width="375" height="324"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="324" id="KVd-s4-kg0"/>
-                                </constraints>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lq5-M4-x8s">
                                 <rect key="frame" x="161" y="536" width="52" height="58"/>
                                 <state key="normal" image="rec_start.png"/>
@@ -117,17 +111,35 @@
                                     <action selector="handleRec:" destination="dbB-Wl-pvP" eventType="touchUpInside" id="ouR-Vo-ZfG"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RXU-oO-TMs">
+                                <rect key="frame" x="0.0" y="28" width="375" height="324"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TDZ-Sg-TG2">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="324"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="324" id="NPY-IX-QeW"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="TDZ-Sg-TG2" secondAttribute="trailing" id="0qs-Rl-ei1"/>
+                                    <constraint firstItem="TDZ-Sg-TG2" firstAttribute="top" secondItem="RXU-oO-TMs" secondAttribute="top" id="fmc-0h-GBI"/>
+                                    <constraint firstItem="TDZ-Sg-TG2" firstAttribute="leading" secondItem="RXU-oO-TMs" secondAttribute="leading" id="uVa-9R-Av5"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="gM3-Ih-X8C" firstAttribute="leading" secondItem="Quf-Py-pjV" secondAttribute="leading" id="BjQ-aC-eTp"/>
                             <constraint firstItem="gM3-Ih-X8C" firstAttribute="top" secondItem="lq5-M4-x8s" secondAttribute="bottom" constant="29" id="KYV-Tu-8qn"/>
+                            <constraint firstItem="RXU-oO-TMs" firstAttribute="trailing" secondItem="gM3-Ih-X8C" secondAttribute="trailing" id="PWO-Vs-nDc"/>
                             <constraint firstAttribute="trailing" secondItem="gM3-Ih-X8C" secondAttribute="trailing" id="Q41-l4-z3r"/>
                             <constraint firstItem="lq5-M4-x8s" firstAttribute="centerX" secondItem="gM3-Ih-X8C" secondAttribute="centerX" id="RFw-LD-P8z"/>
-                            <constraint firstItem="TDZ-Sg-TG2" firstAttribute="top" secondItem="SLv-DO-Rm7" secondAttribute="bottom" constant="8" id="ct7-Hm-Ykw"/>
+                            <constraint firstItem="RXU-oO-TMs" firstAttribute="top" secondItem="SLv-DO-Rm7" secondAttribute="bottom" constant="8" symbolic="YES" id="XE0-ha-jFe"/>
                             <constraint firstItem="gM3-Ih-X8C" firstAttribute="bottom" secondItem="O1R-xw-5c3" secondAttribute="top" id="nB8-u0-dEd"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="TDZ-Sg-TG2" secondAttribute="trailing" constant="-20" id="qqh-oY-hz7"/>
-                            <constraint firstItem="TDZ-Sg-TG2" firstAttribute="leading" secondItem="Quf-Py-pjV" secondAttribute="leadingMargin" constant="-20" id="u14-G4-pwZ"/>
+                            <constraint firstItem="RXU-oO-TMs" firstAttribute="leading" secondItem="gM3-Ih-X8C" secondAttribute="leading" id="tYr-HU-hiU"/>
+                            <constraint firstAttribute="bottom" secondItem="RXU-oO-TMs" secondAttribute="bottom" constant="315" id="yLJ-VU-p6h"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
@@ -222,6 +234,6 @@
         <image name="rec_start.png" width="52" height="58"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Our-ja-Pjl"/>
+        <segue reference="uAA-7R-kcJ"/>
     </inferredMetricsTieBreakers>
 </document>
