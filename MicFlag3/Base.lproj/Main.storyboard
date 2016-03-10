@@ -68,6 +68,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="imgPckBtn" destination="hJy-Iq-XgZ" id="NHQ-xb-55e"/>
+                        <outlet property="imgReuse" destination="YL4-jv-tqC" id="Q3T-9G-2cV"/>
                         <outlet property="imgVw" destination="PvY-69-bRV" id="iaF-Ow-gBR"/>
                     </connections>
                 </viewController>

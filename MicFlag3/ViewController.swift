@@ -25,6 +25,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var imgPckBtn: UIButton!
     @IBOutlet var imgVw: UIImageView!
     @IBOutlet weak var toRecViewBtn: UIButton!
+    @IBOutlet var imgReuse: UILabel!
     
     var imagePicker = UIImagePickerController()
     var imagePicked : Bool!
@@ -54,13 +55,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let image = UIImage(contentsOfFile: path)
         print(image)
         if image == nil {
-            
+            imgReuse.hidden = true
             print("missing image at: \(path)")
         } else {
+            imgReuse.hidden = false
             print("Loading image from path: \(path)")
-            print(image!.imageOrientation)
-            print("width: \(image!.size.width)")
-            print("height: \(image!.size.height)")
             imgVw.image = image
             slctdImg = image
         }
@@ -69,7 +68,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func saveImage (image: UIImage, path: String ) -> Bool{
-        print(image.imageOrientation.rawValue)
         let pngImageData = UIImageJPEGRepresentation(image, 1.0)
         let result = pngImageData!.writeToFile(path, atomically: true)
         return result
@@ -86,7 +84,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imgVw.contentMode = .ScaleAspectFit
-            print(pickedImage.imageOrientation)
             imgVw.image = pickedImage
             slctdImg = pickedImage
             saveImage(slctdImg, path: imagePath)

@@ -52,8 +52,14 @@ class RecordingsListController: UIViewController, UITableViewDelegate, AVAudioPl
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         recordings = userDefaults.objectForKey("micFlagRecordings") as? [String]
-        recordings = recordings.reverse()
-        return (recordings?.count)!
+//        recordings = recordings.reverse()
+//        return (recordings?.count)!
+        if recordings == nil {
+            return 0
+        } else {
+            recordings = recordings.reverse()
+            return (recordings?.count)!
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -79,6 +85,13 @@ class RecordingsListController: UIViewController, UITableViewDelegate, AVAudioPl
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         
         let delete = UITableViewRowAction(style: .Normal, title: "Delete") { action, index in
+            let filePathToDelete = self.getCacheDirectory().URLByAppendingPathComponent(self.recordings[indexPath.row])
+            do {
+                try NSFileManager.defaultManager().removeItemAtURL(filePathToDelete)
+                print("file removed from directory")
+            } catch {
+                print("error when trying to remove file")
+            }
             self.recordings.removeAtIndex(indexPath.row)
             self.userDefaults.setObject(self.recordings, forKey: "micFlagRecordings")
             self.recordingsListTable.reloadData()
