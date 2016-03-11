@@ -12,7 +12,11 @@ import AVFoundation
 class RecordViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDelegate {
 
 //    @IBOutlet var recImgView: UIImageView!
-    @IBOutlet weak var recImgView: UIImageView!
+//    @IBOutlet weak var recImgView: UIImageView!
+//    @IBOutlet var recImgView: UIImageView!
+//    @IBOutlet var recImgView: UIImageView!
+    
+    @IBOutlet var recImgView: UIImageView!
     @IBOutlet weak var plyBtn: UIBarButtonItem!
     @IBOutlet var recBtnNew: UIButton!
     @IBOutlet var recOkBtn: UIButton!
@@ -134,15 +138,6 @@ class RecordViewController: UIViewController, AVAudioPlayerDelegate, AVAudioReco
         let recOkDisable = UIImage(named: "rec_ok_disabled.png")
         let recOkEnabled = UIImage(named: "rec_ok_enabled.png")
         print("handle rec action")
-//        if !recInSession {
-//            recBtnNew.setImage(recPauseImg, forState: .Normal)
-//            setupRecorder()
-//            soundRecorder.record()
-//            recInSession = true
-//        } else {
-//            recBtnNew.setImage(recStrtImg, forState: .Normal)
-//            soundRecorder.pause()
-//        }
         
         if recInSession == false && recPaused == false {
             print("new rec")

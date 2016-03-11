@@ -112,7 +112,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         imageView.userInteractionEnabled = true
         imageView.addGestureRecognizer(tapGestureRecognizer)
         imgPckBtn.layer.borderWidth = 1
-        imgPckBtn.layer.borderColor = UIColor.grayColor().CGColor
+        imgPckBtn.layer.borderColor = UIColor.whiteColor().CGColor
     }
 
     override func didReceiveMemoryWarning() {
