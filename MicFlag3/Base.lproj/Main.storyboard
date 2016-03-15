@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -32,7 +32,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vC2-fA-Hhl">
                                 <rect key="frame" x="337" y="637" width="30" height="30"/>
                                 <connections>
-                                    <segue destination="dbB-Wl-pvP" kind="show" identifier="recViewSegue" id="Our-ja-Pjl"/>
+                                    <segue destination="LFc-dg-ZRH" kind="show" identifier="recViewSegue" id="VlP-Ue-WsB"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hJy-Iq-XgZ">
@@ -171,6 +171,40 @@
             </objects>
             <point key="canvasLocation" x="521.5" y="407.5"/>
         </scene>
+        <!--Test View Controller-->
+        <scene sceneID="RaZ-bB-TQc">
+            <objects>
+                <viewController id="LFc-dg-ZRH" customClass="TestViewController" customModule="MicFlag3" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cYt-Nt-vBC"/>
+                        <viewControllerLayoutGuide type="bottom" id="6zZ-GR-bJ5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jsp-hg-Huk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KIm-1D-RtV">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6zZ-GR-bJ5" firstAttribute="top" secondItem="KIm-1D-RtV" secondAttribute="bottom" id="CEi-8u-9Jg"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="KIm-1D-RtV" secondAttribute="trailing" constant="-20" id="Vzd-aq-IIh"/>
+                            <constraint firstItem="KIm-1D-RtV" firstAttribute="top" secondItem="jsp-hg-Huk" secondAttribute="topMargin" id="urP-YB-crq"/>
+                            <constraint firstItem="KIm-1D-RtV" firstAttribute="leading" secondItem="jsp-hg-Huk" secondAttribute="leadingMargin" constant="-20" id="vaf-z6-QVH"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="testUiView" destination="KIm-1D-RtV" id="dDX-ku-X4X"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y6q-I0-Cok" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="521.5" y="1139.5"/>
+        </scene>
         <!--Recordings List Controller-->
         <scene sceneID="0oh-SD-lVQ">
             <objects>
@@ -252,7 +286,4 @@
         <image name="rec_ok_disabled.png" width="32" height="32"/>
         <image name="rec_start_icon.png" width="64" height="64"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="Our-ja-Pjl"/>
-    </inferredMetricsTieBreakers>
 </document>
