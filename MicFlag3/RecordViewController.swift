@@ -16,12 +16,14 @@ class RecordViewController: UIViewController, AVAudioPlayerDelegate, AVAudioReco
 //    @IBOutlet var recImgView: UIImageView!
 //    @IBOutlet var recImgView: UIImageView!
     
-    @IBOutlet var recImgView: UIImageView!
+//    @IBOutlet var recImgView: UIImageView!
+    @IBOutlet var recImgViewContainer: UIView!
     @IBOutlet weak var plyBtn: UIBarButtonItem!
     @IBOutlet var recBtnNew: UIButton!
     @IBOutlet var recOkBtn: UIButton!
     @IBOutlet var savedNotification: UILabel!
     
+    var imageView : UIImageView?
     var soundRecorder : AVAudioRecorder!
     var soundPlayer : AVAudioPlayer!
     var fileName = "micFlagRecording"
@@ -164,8 +166,19 @@ class RecordViewController: UIViewController, AVAudioPlayerDelegate, AVAudioReco
     override func viewDidLoad() {
         super.viewDidLoad()
         savedNotification.hidden = true
-        recImgView.image = slctdImg
-        recImgView.clipsToBounds = true
+        let size = CGSize(width: slctdImg.size.width, height: slctdImg.size.height)
+        let aspectRect = AVMakeRectWithAspectRatioInsideRect(size, UIScreen.mainScreen().bounds)
+        print(aspectRect.size.height)
+        print(aspectRect.size.width)
+        print(recImgViewContainer.bounds.width)
+        imageView = UIImageView(frame: CGRectMake(0, 0, aspectRect.size.width, aspectRect.size.height))
+        imageView?.image = slctdImg
+//        imageView?.contentMode = .ScaleAspectFit
+//        imageView?.clipsToBounds = true
+        recBtnNew.layer.zPosition = 1
+        recOkBtn.layer.zPosition = 1
+        savedNotification.layer.zPosition = 1
+        self.view.addSubview(imageView!)
     }
 
     override func didReceiveMemoryWarning() {
