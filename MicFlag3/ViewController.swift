@@ -76,8 +76,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     let imagePath = fileInDocumentsDirectory("micFlagImg.png")
     
     func recViewSegue() {
-        dispatch_async(dispatch_get_main_queue()) {
-            self.performSegueWithIdentifier("recViewSegue", sender: true)
+//        dispatch_async(dispatch_get_main_queue()) {
+//            self.performSegueWithIdentifier("recViewSegue", sender: true)
+//        }
+        if let recView = storyboard!.instantiateViewControllerWithIdentifier("RecordViewController") as? RecordViewController {
+            recView.transitioningDelegate = self
+            presentViewController(recView, animated: true, completion: nil)
         }
     }
     
@@ -123,3 +127,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
 }
 
+extension ViewController : UIViewControllerTransitioningDelegate {
+    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        let animator = PresentRecViewAnimator()
+        animator.originFrame = imgVw!.superview!.convertRect(imgVw!.frame, toView: nil)
+        return animator
+    }
+}

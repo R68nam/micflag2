@@ -79,7 +79,7 @@
         <!--Record View Controller-->
         <scene sceneID="lZj-2N-a24">
             <objects>
-                <viewController id="dbB-Wl-pvP" customClass="RecordViewController" customModule="MicFlag3" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RecordViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dbB-Wl-pvP" customClass="RecordViewController" customModule="MicFlag3" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SLv-DO-Rm7"/>
                         <viewControllerLayoutGuide type="bottom" id="O1R-xw-5c3"/>
@@ -90,7 +90,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F3a-PM-Rz9">
                                 <rect key="frame" x="-4" y="0.0" width="328" height="524"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gM3-Ih-X8C">
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
@@ -161,7 +161,9 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="okBtnHeightConstraint" destination="zsS-W1-dbF" id="83D-Np-Brp"/>
                         <outlet property="plyBtn" destination="Ofk-ib-JIW" id="dN7-oa-tzv"/>
+                        <outlet property="recBtnHeightConstraint" destination="tds-7O-pqg" id="QsV-Xn-ARo"/>
                         <outlet property="recBtnNew" destination="lq5-M4-x8s" id="xxD-yp-k4O"/>
                         <outlet property="recImgViewContainer" destination="F3a-PM-Rz9" id="WVW-Q3-iXP"/>
                         <outlet property="recOkBtn" destination="Tvu-OS-TWX" id="f9u-pT-IAd"/>
@@ -171,40 +173,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="64F-kf-LeZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="521.5" y="407.5"/>
-        </scene>
-        <!--Test View Controller-->
-        <scene sceneID="RaZ-bB-TQc">
-            <objects>
-                <viewController id="LFc-dg-ZRH" customClass="TestViewController" customModule="MicFlag3" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="cYt-Nt-vBC"/>
-                        <viewControllerLayoutGuide type="bottom" id="6zZ-GR-bJ5"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="jsp-hg-Huk">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KIm-1D-RtV">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="6zZ-GR-bJ5" firstAttribute="top" secondItem="KIm-1D-RtV" secondAttribute="bottom" id="CEi-8u-9Jg"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="KIm-1D-RtV" secondAttribute="trailing" constant="-20" id="Vzd-aq-IIh"/>
-                            <constraint firstItem="KIm-1D-RtV" firstAttribute="top" secondItem="jsp-hg-Huk" secondAttribute="topMargin" id="urP-YB-crq"/>
-                            <constraint firstItem="KIm-1D-RtV" firstAttribute="leading" secondItem="jsp-hg-Huk" secondAttribute="leadingMargin" constant="-20" id="vaf-z6-QVH"/>
-                        </constraints>
-                    </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                    <connections>
-                        <outlet property="testUiView" destination="KIm-1D-RtV" id="dDX-ku-X4X"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Y6q-I0-Cok" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="521.5" y="1139.5"/>
         </scene>
         <!--Recordings List Controller-->
         <scene sceneID="0oh-SD-lVQ">
@@ -288,6 +256,6 @@
         <image name="rec_start_icon.png" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="uAA-7R-kcJ"/>
+        <segue reference="l5W-DR-Iim"/>
     </inferredMetricsTieBreakers>
 </document>

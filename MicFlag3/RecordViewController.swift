@@ -11,12 +11,6 @@ import AVFoundation
 
 class RecordViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDelegate {
 
-//    @IBOutlet var recImgView: UIImageView!
-//    @IBOutlet weak var recImgView: UIImageView!
-//    @IBOutlet var recImgView: UIImageView!
-//    @IBOutlet var recImgView: UIImageView!
-    
-//    @IBOutlet var recImgView: UIImageView!
     @IBOutlet var recImgViewContainer: UIView!
     @IBOutlet weak var plyBtn: UIBarButtonItem!
     @IBOutlet var recBtnNew: UIButton!
@@ -123,6 +117,21 @@ class RecordViewController: UIViewController, AVAudioPlayerDelegate, AVAudioReco
         savedNotification.hidden = true
     }
     
+    @IBOutlet weak var okBtnHeightConstraint : NSLayoutConstraint!
+    func btnOkAnimateUp() {
+        okBtnHeightConstraint.constant = 83.0
+        UIView.animateWithDuration(0.75, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0, options: [], animations: {
+                self.view.layoutIfNeeded()
+            }, completion: nil)
+    }
+    
+    func btnOkAnimateDown() {
+        okBtnHeightConstraint.constant = -100.0
+        UIView.animateWithDuration(0.75, delay: 0.5, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0, options: [], animations: {
+            self.view.layoutIfNeeded()
+            }, completion: nil)
+    }
+    
     @IBAction func handleRecOk(sender: UIButton) {
         let recOkDisable = UIImage(named: "rec_ok_disabled.png")
         soundRecorder.stop()
@@ -131,6 +140,7 @@ class RecordViewController: UIViewController, AVAudioPlayerDelegate, AVAudioReco
         recInSession = false
         recPaused = false
         recOkBtn.setImage(recOkDisable, forState: .Normal)
+        btnOkAnimateDown()
         NSTimer.scheduledTimerWithTimeInterval(1.5, target: self, selector: Selector("clearSaveNotification"), userInfo: nil, repeats: false)
     }
     
@@ -140,7 +150,7 @@ class RecordViewController: UIViewController, AVAudioPlayerDelegate, AVAudioReco
         let recOkDisable = UIImage(named: "rec_ok_disabled.png")
         let recOkEnabled = UIImage(named: "rec_ok_enabled.png")
         print("handle rec action")
-        
+
         if recInSession == false && recPaused == false {
             print("new rec")
             recBtnNew.setImage(recPauseImg, forState: .Normal)
@@ -154,13 +164,25 @@ class RecordViewController: UIViewController, AVAudioPlayerDelegate, AVAudioReco
             recPaused = true
             recOkBtn.setImage(recOkEnabled, forState: .Normal)
             recBtnNew.setImage(recStrtImg, forState: .Normal)
+            btnOkAnimateUp()
         } else {
             print("rec restarted")
             soundRecorder.record()
             recPaused = false
             recOkBtn.setImage(recOkDisable, forState: .Normal)
             recBtnNew.setImage(recPauseImg, forState: .Normal)
+            btnOkAnimateDown()
         }
+    }
+    
+    @IBOutlet weak var recBtnHeightConstraint : NSLayoutConstraint!
+    
+    func btnLoadAnimate() {
+        recBtnHeightConstraint.constant = 73.0
+        
+        UIView.animateWithDuration(0.75, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0, options: [], animations: {
+                self.view.layoutIfNeeded()
+            }, completion: nil)
     }
     
     override func viewDidLoad() {
@@ -173,12 +195,16 @@ class RecordViewController: UIViewController, AVAudioPlayerDelegate, AVAudioReco
         print(recImgViewContainer.bounds.width)
         imageView = UIImageView(frame: CGRectMake(0, 0, aspectRect.size.width, aspectRect.size.height))
         imageView?.image = slctdImg
-//        imageView?.contentMode = .ScaleAspectFit
-//        imageView?.clipsToBounds = true
         recBtnNew.layer.zPosition = 1
         recOkBtn.layer.zPosition = 1
+        recBtnHeightConstraint.constant = -100.0
+        okBtnHeightConstraint.constant = -100.0
+        UIView.animateWithDuration(1.0, delay: 0, options: [.CurveEaseOut], animations: {
+            self.view.layoutIfNeeded()
+            }, completion: nil)
         savedNotification.layer.zPosition = 1
         self.view.addSubview(imageView!)
+        NSTimer.scheduledTimerWithTimeInterval(NSTimeInterval(0.5), target: self, selector: "btnLoadAnimate", userInfo: nil, repeats: false)
     }
 
     override func didReceiveMemoryWarning() {
