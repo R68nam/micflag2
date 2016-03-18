@@ -17,9 +17,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PvY-69-bRV">
-                                <rect key="frame" x="50" y="303" width="220" height="150"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or Use This One " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YL4-jv-tqC">
                                 <rect key="frame" x="50" y="271" width="220" height="27"/>
                                 <constraints>
@@ -51,16 +48,12 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="YL4-jv-tqC" firstAttribute="trailing" secondItem="PvY-69-bRV" secondAttribute="trailing" id="10A-EM-5CX"/>
                             <constraint firstItem="YL4-jv-tqC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="34" id="400-Di-iqY"/>
-                            <constraint firstItem="PvY-69-bRV" firstAttribute="top" secondItem="YL4-jv-tqC" secondAttribute="bottom" constant="5" id="H8h-bf-xlP"/>
                             <constraint firstItem="hJy-Iq-XgZ" firstAttribute="trailing" secondItem="YL4-jv-tqC" secondAttribute="trailing" id="IE0-9i-9j2"/>
                             <constraint firstItem="YL4-jv-tqC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="IzA-Gi-4dD"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="PvY-69-bRV" secondAttribute="bottom" constant="115" id="Lus-c3-2FB"/>
                             <constraint firstItem="YL4-jv-tqC" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="RFH-uf-oKW"/>
                             <constraint firstItem="YL4-jv-tqC" firstAttribute="top" secondItem="hJy-Iq-XgZ" secondAttribute="bottom" constant="24" id="Y48-er-65f"/>
                             <constraint firstItem="vC2-fA-Hhl" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="hd2-HW-ahw"/>
-                            <constraint firstItem="YL4-jv-tqC" firstAttribute="leading" secondItem="PvY-69-bRV" secondAttribute="leading" id="oXA-6B-N78"/>
                             <constraint firstItem="hJy-Iq-XgZ" firstAttribute="leading" secondItem="YL4-jv-tqC" secondAttribute="leading" id="pwO-C9-dKU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vC2-fA-Hhl" secondAttribute="trailing" constant="-8" id="xEe-is-WV8"/>
                         </constraints>
@@ -69,12 +62,11 @@
                     <connections>
                         <outlet property="imgPckBtn" destination="hJy-Iq-XgZ" id="NHQ-xb-55e"/>
                         <outlet property="imgReuse" destination="YL4-jv-tqC" id="Q3T-9G-2cV"/>
-                        <outlet property="imgVw" destination="PvY-69-bRV" id="iaF-Ow-gBR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="57.5" y="407.5"/>
+            <point key="canvasLocation" x="57" y="407"/>
         </scene>
         <!--Record View Controller-->
         <scene sceneID="lZj-2N-a24">

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
     var slctdImg : UIImage!
 
@@ -23,13 +24,15 @@ import UIKit
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var imgPckBtn: UIButton!
-    @IBOutlet var imgVw: UIImageView!
+//    @IBOutlet var imgVw: UIImageView!
     @IBOutlet weak var toRecViewBtn: UIButton!
     @IBOutlet var imgReuse: UILabel!
     
+    var imageView : UIImageView?
     var imagePicker = UIImagePickerController()
     var imagePicked : Bool!
     var data : NSData!
+    let deviceScreenSize : CGRect = UIScreen.mainScreen().bounds
     
     override func shouldAutorotate() -> Bool {
         if (UIDevice.currentDevice().orientation == UIDeviceOrientation.LandscapeLeft ||
@@ -50,6 +53,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         imagePicker.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    let newUiView : UIView = UIView()
+    
     func loadImageFromPath(path: String) -> UIImage? {
         
         let image = UIImage(contentsOfFile: path)
@@ -59,9 +64,21 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             print("missing image at: \(path)")
         } else {
             imgReuse.hidden = false
-            print("Loading image from path: \(path)")
-            imgVw.image = image
             slctdImg = image
+            newUiView.translatesAutoresizingMaskIntoConstraints = false
+            newUiView.frame = CGRectMake(deviceScreenSize.width * 0.27, deviceScreenSize.height * 0.53, deviceScreenSize.width * 0.45, deviceScreenSize.height * 0.45)
+            newUiView.backgroundColor = UIColor.blackColor()
+            newUiView.bottomAnchor
+            self.view.addSubview(newUiView)
+            let size = CGSize(width: slctdImg.size.width, height: slctdImg.size.height)
+            let aspectRect = AVMakeRectWithAspectRatioInsideRect(size, newUiView.bounds)
+            imageView = UIImageView(frame: CGRectMake(0, 0, aspectRect.size.width, aspectRect.size.height))
+            imageView?.image = slctdImg
+            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("imageTapped:"))
+            imageView!.userInteractionEnabled = true
+            imageView!.addGestureRecognizer(tapGestureRecognizer)
+            newUiView.addSubview(imageView!)
+            print("Loading image from path: \(path)")
         }
         return image
         
@@ -87,8 +104,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            imgVw.contentMode = .ScaleAspectFit
-            imgVw.image = pickedImage
+            imageView!.contentMode = .ScaleAspectFit
+            imageView!.image = pickedImage
             slctdImg = pickedImage
             saveImage(slctdImg, path: imagePath)
         }
@@ -107,21 +124,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         recViewSegue()
     }
     
+    let container = UILayoutGuide()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
         loadImageFromPath(imagePath)
-        let imageView = imgVw
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("imageTapped:"))
-        imageView.userInteractionEnabled = true
-        imageView.addGestureRecognizer(tapGestureRecognizer)
         imgPckBtn.layer.borderWidth = 1
         imgPckBtn.layer.borderColor = UIColor.whiteColor().CGColor
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
     }
 
 
@@ -130,7 +144,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 extension ViewController : UIViewControllerTransitioningDelegate {
     func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         let animator = PresentRecViewAnimator()
-        animator.originFrame = imgVw!.superview!.convertRect(imgVw!.frame, toView: nil)
+        animator.originFrame = newUiView.superview!.convertRect(newUiView.frame, toView: nil)
         return animator
     }
 }
