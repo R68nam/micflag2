@@ -89,7 +89,7 @@
                                 <items>
                                     <barButtonItem title="Flags" id="arM-ud-Bjm">
                                         <connections>
-                                            <segue destination="BYZ-38-t0r" kind="show" id="hqQ-h0-pTX"/>
+                                            <action selector="returnToImgSelect:" destination="dbB-Wl-pvP" id="98a-BQ-mnT"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="CTZ-DW-0G0"/>
@@ -160,6 +160,8 @@
                         <outlet property="recImgViewContainer" destination="F3a-PM-Rz9" id="WVW-Q3-iXP"/>
                         <outlet property="recOkBtn" destination="Tvu-OS-TWX" id="f9u-pT-IAd"/>
                         <outlet property="savedNotification" destination="Fu7-eL-HWD" id="YYv-Fe-Y4a"/>
+                        <outlet property="toolbar" destination="gM3-Ih-X8C" id="MSr-BW-Izk"/>
+                        <outlet property="toolbarConstraint" destination="nUX-zJ-ZAe" id="BS0-Gy-tzE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="64F-kf-LeZ" userLabel="First Responder" sceneMemberID="firstResponder"/>

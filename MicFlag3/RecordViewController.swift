@@ -16,6 +16,7 @@ class RecordViewController: UIViewController, AVAudioPlayerDelegate, AVAudioReco
     @IBOutlet var recBtnNew: UIButton!
     @IBOutlet var recOkBtn: UIButton!
     @IBOutlet var savedNotification: UILabel!
+    @IBOutlet var toolbar: UIToolbar!
     
     var imageView : UIImageView?
     var soundRecorder : AVAudioRecorder!
@@ -176,6 +177,7 @@ class RecordViewController: UIViewController, AVAudioPlayerDelegate, AVAudioReco
     }
     
     @IBOutlet weak var recBtnHeightConstraint : NSLayoutConstraint!
+    @IBOutlet var toolbarConstraint : NSLayoutConstraint!
     
     func btnLoadAnimate() {
         recBtnHeightConstraint.constant = 73.0
@@ -183,6 +185,27 @@ class RecordViewController: UIViewController, AVAudioPlayerDelegate, AVAudioReco
         UIView.animateWithDuration(0.75, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0, options: [], animations: {
                 self.view.layoutIfNeeded()
             }, completion: nil)
+    }
+    
+    func recBtnHide() {
+        recBtnHeightConstraint.constant = -100
+        UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0, options: [], animations: {
+            self.view.layoutIfNeeded()
+            }, completion: nil)
+    }
+    
+    func hideToolBar() {
+//        toolbar.hidden = true
+        toolbarConstraint.constant = 100
+        UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0, options: [], animations: {
+            self.view.layoutIfNeeded()
+            }, completion: nil)
+    }
+    
+    @IBAction func returnToImgSelect(sender: UIBarButtonItem) {
+        recBtnHide()
+        hideToolBar()
+        presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
     
     override func viewDidLoad() {
@@ -210,16 +233,5 @@ class RecordViewController: UIViewController, AVAudioPlayerDelegate, AVAudioReco
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -147,4 +147,9 @@ extension ViewController : UIViewControllerTransitioningDelegate {
         animator.originFrame = newUiView.superview!.convertRect(newUiView.frame, toView: nil)
         return animator
     }
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        let dismissAnimator = PresentImgSelectViewAnimator()
+        dismissAnimator.originFrame = newUiView.superview!.convertRect(newUiView.frame, toView: nil)
+        return dismissAnimator
+    }
 }
